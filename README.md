@@ -52,19 +52,21 @@ namespace MinoMain
     }
 }
 ```
+And this is the result:
+
 ![](readmefiles/basic.png)
 
 # But is that all you can do with it? 
 
-#### You can do some interesting tools taking advantage of its (wip) 3D renderer.
+#### You can do some interesting tools when taking advantage of its (wip) 3D renderer.
 ## Here is a tool I made some time ago for my own game in Unity3D. 
 ![](readmefiles/unity3D_original_tool.gif)
 
 ## And this is the port to MinoTool:
 ![](readmefiles/standalone_tool_3d.gif)
 
-### just minor changes to the original Unity editor code were made to port the entire tool!
-Original:
+### just minor changes to the original Unity editor code were made to port the core of the tool!
+Original, Unity3D:
 
 ```c#
 using UnityEditor;
@@ -107,7 +109,7 @@ namespace LevelBuilder
                 ...
 
 ```
-# Port to MinoTool
+# Port, MinoTool: OpenGl 3.3, dear Imgui
 
 ```c#
 using MinoTool;
@@ -124,7 +126,10 @@ namespace LevelBuilder
                 var areaSize = _areaSize;
                 var areaPos = _areaPos; 
 
-                IMGUI.Begin(CateogoryName, ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoCollapse);
+                IMGUI.Begin(CateogoryName, ImGuiWindowFlags.NoResize | 
+                                           ImGuiWindowFlags.NoMove | 
+                                           ImGuiWindowFlags.NoCollapse);
+
                 IMGUI.SetWindowSize(areaSize);
                 IMGUI.SetWindowPos(areaPos);
 
@@ -134,9 +139,11 @@ namespace LevelBuilder
                 {
                     for (int i = 0; i < _categories.MainPropsNames.Length; i++)
                     {
-                        if (IMGUI.Button(_categories.MainPropsNames[i], new System.Numerics.Vector2(width, height)))
+                        if (IMGUI.Button(_categories.MainPropsNames[i], 
+                                         new System.Numerics.Vector2(width, height)))
                         {
-                            _builder.SetProp(column, _subMenuUIControl.Container, _categories.GetPropEnum(_categories.MainPropsNames[i]));
+                            _builder.SetProp(column, _subMenuUIControl.Container, 
+                                            _categories.GetPropEnum(_categories.MainPropsNames[i]));
                         }
                     }
                 }
