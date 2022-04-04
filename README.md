@@ -1,7 +1,7 @@
 ## MinoTool
 A custom C# - OpenGL standalone lib to create tools easier!
 
-### Simple Dear ImGui implementation: 
+## Simple Dear ImGui implementation: 
 If you have used Dear ImGui in the past there is not more to it apart from an easy to implement API. 
 #### Build, import the libs to your app, and: 
 
