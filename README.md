@@ -10,113 +10,94 @@ A custom C# - OpenGL standalone lib to create tools easier!
 # Here is a tool I made some time ago for my own game in Unity3D. 
 ![](readmefiles/unity3D_original_tool.gif)
 
-# And this is the port to MinoTool:
+And this is the port to MinoTool:
 ![](readmefiles/standalone_tool_3d.gif)
 
 ### just minor changes to the original Unity editor code were made to port the entire tool!
-# Original
+Original:
 
 ```c#
-using System;
-using System.Collections.Generic;
-#if UNITY_EDITOR
-using UnityEngine;
 using UnityEditor;
 
 namespace LevelBuilder
 {
-    public class ColumnEditor
+    public class LevelBuilderPropsSidebarUI : ILevelBuilderUIMenu
     {
-        private GUIContent _content;
-        [SerializeField] private Texture2D _icon;
-
-        private B_Column _column;
-
-        public ColumnEditor(LevelGrid grid)
+        public void OnGUI(B_Column column, EditorWindow window)
         {
-            Handles.zTest = UnityEngine.Rendering.CompareFunction.Less;
+            _column = column;
 
-            _grid = grid;
-            _content = new GUIContent("Column editor")
+            if (column != null)
             {
-                text = "Editor",
-                image = _icon
-            };
+                var areaRect = new Rect(x, y, width, Screen.height - ofssetHeigh);
 
-            _columnsToAdd = new List<ColumnData>();
-        }
+                GUILayout.BeginArea(areaRect);
 
-        public void OnGUI(B_Column column)
-        {
-            var zTest = Handles.zTest;
-            Handles.zTest = UnityEngine.Rendering.CompareFunction.Less;
+                window.BeginWindows();
 
+                var color = Color.black;
+                color.a = semiTransparent;
 
-            if (column)
-            {
-                if (column && column.gameObject.activeInHierarchy)
-                {
-                    if (_column != column)
-                    {
-                        if (_column)
-                        {
-                            OnColumnUnselected(_column);
-                        }
+                var drawRect = areaRect;
+                drawRect.x = 0;
+                drawRect.y = 0;
+                drawRect.width = drawRectWidth;
 
-                        _column = column;
+                EditorGUI.DrawRect(drawRect, color);
+                GUILayout.Space(5);
+
+                GUILayout.BeginHorizontal();
+                var c = GUI.color;
+                GUI.color = Color.green;
+                GUILayout.Label(localizedTitle);
+                GUI.color = c;
+
+                var enabled = EditorGUILayout.Toggle(column.IsHiddenPathEnabled);
+                GUILayout.EndHorizontal();
+                ...
+
 ```
 # Port to MinoTool
 
 ```c#
-using System;
 using MinoTool;
+using MinoGUI;
 
 namespace LevelBuilder
 {
-    public class ColumnEditor : EntityBehaviour
+    public class LevelBuilderPropsSidebarUI : ILevelBuilderUIMenu
     {
-        private B_Column _column;
-
-        private enum CurrentSideArrow
-        {
-            None, Front, Back, Right, Left
-        }
-
-        private float _increaseHeightEvery = 3.5f;
-
-        private CurrentSideArrow _currentSideArrow;
-
-        private readonly LevelGrid _grid;
-
-        public ColumnEditor(LevelGrid grid)
-        {
-            Handles.zTest = CompareFunction.Less;
-
-            _grid = grid;
-         
-            _columnsToAdd = new List<ColumnData>();
-        }
-
         public void OnGUI(B_Column column)
         {
-            var zTest = Handles.zTest;
-            Handles.zTest = CompareFunction.Less;
-
-
             if (column != null)
             {
-                if (column != null && column.gameObject.activeInHierarchy)
-                {
-                    if (_column != column)
-                    {
-                        if (_column != null)
-                        {
-                            OnColumnUnselected(_column);
-                        }
+                var areaSize = _areaSize;
+                var areaPos = _areaPos; 
 
-                        _column = column;
+                IMGUI.Begin(CateogoryName, ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoCollapse);
+                IMGUI.SetWindowSize(areaSize);
+                IMGUI.SetWindowPos(areaPos);
+
+                var width = IMGUI.GetWindowWidth() - offset;
+
+                if (IMGUI.CollapsingHeader(MainPropsTitle, ImGuiTreeNodeFlags.DefaultOpen))
+                {
+                    for (int i = 0; i < _categories.MainPropsNames.Length; i++)
+                    {
+                        if (IMGUI.Button(_categories.MainPropsNames[i], new System.Numerics.Vector2(width, height)))
+                        {
+                            _builder.SetProp(column, _subMenuUIControl.Container, _categories.GetPropEnum(_categories.MainPropsNames[i]));
+                        }
+                    }
+                }
+
+                IMGUI.Spacing();
+                IMGUI.Spacing();
+
+                if (IMGUI.CollapsingHeader(SecondaryPropsTitle, ImGuiTreeNodeFlags.DefaultOpen))
+                ...
 ```
-# Gameplay showing the created level!
+# Gameplay showing the final level!
 ![](readmefiles/level_gameplay.gif)
 
 ### To Do
