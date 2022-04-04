@@ -2,15 +2,32 @@
 A custom C# - OpenGL standalone lib to create tools easier!
 
 ### Simple UI Dear ImGui: 
-# 
+If you have used it before there is not more to it apart from the easy to implement API:
+
+```c#
+using MinoTool;
+using MinoMain;
+
+namespace Program
+{
+    public class Program 
+    {
+        public static void Main()
+        {
+            Mino.Run<CustomUI>("Mino tool", 1324, 600);
+        }
+    }
+}
+```
 ![](readmefiles/basic.png)
 
-### But is that all you can do with it? 
-## You can do some interesting tools taking advantage of its (wip) 3D renderer.
-# Here is a tool I made some time ago for my own game in Unity3D. 
+# But is that all you can do with it? 
+
+#### You can do some interesting tools taking advantage of its (wip) 3D renderer.
+## Here is a tool I made some time ago for my own game in Unity3D. 
 ![](readmefiles/unity3D_original_tool.gif)
 
-And this is the port to MinoTool:
+## And this is the port to MinoTool:
 ![](readmefiles/standalone_tool_3d.gif)
 
 ### just minor changes to the original Unity editor code were made to port the entire tool!
