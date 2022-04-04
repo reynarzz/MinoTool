@@ -81,7 +81,7 @@ namespace LevelBuilder
 
             if (column != null)
             {
-                var areaRect = new Rect(x, y, width, Screen.height - ofssetHeigh);
+                var areaRect = new Rect(x, y, width, Screen.height - offsetHeigh);
 
                 GUILayout.BeginArea(areaRect);
 
@@ -154,7 +154,7 @@ namespace LevelBuilder
                 if (IMGUI.CollapsingHeader(SecondaryPropsTitle, ImGuiTreeNodeFlags.DefaultOpen))
                 ...
 ```
-# Gameplay showing the final level!
+## And the gameplay showing the final level!
 ![](readmefiles/level_gameplay.gif)
 
 ### To Do
