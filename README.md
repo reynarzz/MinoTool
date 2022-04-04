@@ -167,15 +167,12 @@ namespace LevelBuilder
 - [ ] Simple shadow.
 - [ ] Port to Mac.
 - [ ] Port to Linux.
-- [ ] Port to Android (:D).
+- [ ] Port to Android.
 
 ### Dependencies
 -Dear Imgui (C# wrapper).
 
--StBImage.
-
--GLfw.
-
--GL lib.
-
--Glm.
+StBImage.
+GLfw.
+GL lib.
+Glm.
