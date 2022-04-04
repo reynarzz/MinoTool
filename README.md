@@ -2,7 +2,7 @@
 A custom C# - OpenGL standalone lib to create tools easier!
 
 ### Simple UI Dear ImGui: 
-If you have used it before there is not more to it apart from the easy to implement API:
+If you have used Dear ImGui before there is not more to it apart from an easy to implement API:
 
 Main.cs
 ```c#
