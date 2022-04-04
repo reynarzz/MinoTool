@@ -160,5 +160,7 @@ namespace LevelBuilder
 - [ ] Refactor.
    - [ ] Fix some expensive calls.
    - [ ] Arquitecture.
+   - [ ] Contain all third party dependencies in the main DLL.
 - [ ] Directional light.
 - [ ] Simple shadow.
+
