@@ -58,7 +58,7 @@ namespace MinoMain
 # But is that all you can do with it? 
 
 #### You can do some interesting tools when taking advantage of its (wip) 3D renderer.
-## Here is a tool I made some time ago for my own game in Unity3D. 
+## Here is a tool I made for my own game in Unity3D. 
 Powered by the Unity's old GUI system.
 ![](readmefiles/unity3D_original_tool.gif)
 
