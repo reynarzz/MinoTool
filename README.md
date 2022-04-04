@@ -65,7 +65,7 @@ And this is the result:
 ## And this is the port to MinoTool:
 ![](readmefiles/standalone_tool_3d.gif)
 
-### just minor changes to the original Unity editor code were made to port the core of the tool!
+#### just minor changes to the original Unity editor code were made to port the core of the tool!
 Original, Unity3D:
 
 ```c#
@@ -109,7 +109,7 @@ namespace LevelBuilder
                 ...
 
 ```
-# Port, MinoTool: OpenGl 3.3, dear Imgui
+## Port, MinoTool: OpenGl 3.3, dear Imgui
 
 ```c#
 using MinoTool;
@@ -126,7 +126,7 @@ namespace LevelBuilder
                 var areaSize = _areaSize;
                 var areaPos = _areaPos; 
 
-                IMGUI.Begin(CateogoryName, ImGuiWindowFlags.NoResize | 
+                IMGUI.Begin(CategoryName, ImGuiWindowFlags.NoResize | 
                                            ImGuiWindowFlags.NoMove | 
                                            ImGuiWindowFlags.NoCollapse);
 
