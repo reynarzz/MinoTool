@@ -59,9 +59,11 @@ namespace MinoMain
 
 #### You can do some interesting tools when taking advantage of its (wip) 3D renderer.
 ## Here is a tool I made some time ago for my own game in Unity3D. 
+Powered by the Unity's old GUI system.
 ![](readmefiles/unity3D_original_tool.gif)
 
 ## And this is the port to MinoTool:
+Showcasing object selection and box stack modification.
 ![](readmefiles/standalone_tool_3d.gif)
 
 #### just minor changes to the original Unity editor code were made to port the core of the tool!
