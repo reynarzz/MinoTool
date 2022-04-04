@@ -4,6 +4,7 @@ A custom C# - OpenGL standalone lib to create tools easier!
 ### Simple UI Dear ImGui: 
 If you have used it before there is not more to it apart from the easy to implement API:
 
+Main.cs
 ```c#
 using MinoTool;
 using MinoMain;
@@ -15,6 +16,38 @@ namespace Program
         public static void Main()
         {
             Mino.Run<CustomUI>("Mino tool", 1324, 600);
+        }
+    }
+}
+```
+
+CustomUI.cs
+```c#
+using MinoTool;
+using MinoGUI;
+
+namespace MinoMain
+{
+    public class CustomUI : MinoApp
+    {
+        public override void OnAppStart() 
+        {
+            // initialization.
+        }
+
+        public override void OnGUI()
+        {
+            IMGUI.ShowDemoWindow();
+        }
+
+        public override void OnToolbarGUI()
+        {
+            // Toolbar Ui here!
+        }
+
+        public override void OnQuit() 
+        {
+            // Cleanup here.
         }
     }
 }
