@@ -60,7 +60,7 @@ namespace MinoMain
 The imgui demo window and a tool bar.
 ![](readmefiles/basic.png)
 
-# But is that all you can do with it? 
+# But... is that all you can do with it? 
 
 #### You can do some interesting tools when taking advantage of its (wip) 3D renderer.
 ## Here is a tool I made for my own game in Unity3D. 
