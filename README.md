@@ -14,6 +14,10 @@ namespace Program
     {
         public static void Main()
         {
+            // Window name.
+            // Screen width.
+            // Screen height.
+            
             Mino.Run<CustomUI>("Mino tool", 1324, 600);
         }
     }
