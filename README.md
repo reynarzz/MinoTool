@@ -166,7 +166,11 @@ namespace LevelBuilder
 
 ### Dependencies
 -Dear Imgui (C# wrapper).
+
 -StBImage.
+
 -GLfw.
+
 -GL lib.
+
 -Glm.
