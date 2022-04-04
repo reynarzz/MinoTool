@@ -62,7 +62,7 @@ namespace MinoMain
 Powered by the Unity's old GUI system.
 ![](readmefiles/unity3D_original_tool.gif)
 
-## And this is the port to MinoTool:
+## And this is the port to MinoTool:  OpenGl 3.3, dear Imgui, C#
 Showcasing object selection and box stack modification.
 ![](readmefiles/standalone_tool_3d.gif)
 
@@ -110,7 +110,7 @@ namespace LevelBuilder
                 ...
 
 ```
-## Port to MinoTool: OpenGl 3.3, dear Imgui, C#
+## Port to MinoTool:
 
 ```c#
 using MinoTool;
