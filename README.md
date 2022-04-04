@@ -155,7 +155,7 @@ namespace LevelBuilder
                 if (IMGUI.CollapsingHeader(SecondaryPropsTitle, ImGuiTreeNodeFlags.DefaultOpen))
                 ...
 ```
-## And the gameplay showing the final level!
+## Gameplay showing the final edited level (Unity3D)
 ![](readmefiles/level_gameplay.gif)
 
 ### To Do
