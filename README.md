@@ -7,7 +7,6 @@ If you have used it before there is not more to it apart from the easy to implem
 Main.cs
 ```c#
 using MinoTool;
-using MinoMain;
 
 namespace Program
 {
