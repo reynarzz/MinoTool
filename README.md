@@ -1,8 +1,8 @@
 ## MinoTool
 A custom C# - OpenGL standalone lib to create tools easier!
 
-### Simple UI Dear ImGui: 
-If you have used Dear ImGui before there is not more to it apart from an easy to implement API:
+### Simple Dear ImGui implementation: 
+If you have used Dear ImGui in the past there is not more to it apart from an easy to implement API:
 
 Main.cs
 ```c#
@@ -165,6 +165,9 @@ namespace LevelBuilder
    - [ ] Contain all third party dependencies in the main DLL.
 - [ ] Directional light.
 - [ ] Simple shadow.
+- [ ] Port to Mac.
+- [ ] Port to Linux.
+- [ ] Port to Android (:D).
 
 ### Dependencies
 -Dear Imgui (C# wrapper).
