@@ -58,7 +58,7 @@ namespace MinoMain
 }
 ```
 ### And this is the result:
-
+The imgui demo window and a tool bar.
 ![](readmefiles/basic.png)
 
 # But is that all you can do with it? 
