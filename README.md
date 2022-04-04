@@ -164,3 +164,9 @@ namespace LevelBuilder
 - [ ] Directional light.
 - [ ] Simple shadow.
 
+### Dependencies
+-Dear Imgui (C# wrapper).
+-StBImage.
+-GLfw.
+-GL lib.
+-Glm.
