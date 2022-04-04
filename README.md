@@ -4,7 +4,7 @@ A custom C# - OpenGL standalone lib to create tools easier!
 ### Simple Dear ImGui implementation: 
 If you have used Dear ImGui in the past there is not more to it apart from an easy to implement API. 
 
-Create a console app, import the libs, and: 
+Build, import the libs in your app, and: 
 
 Main.cs
 ```c#
