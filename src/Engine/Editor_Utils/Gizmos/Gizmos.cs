@@ -14,20 +14,20 @@ namespace MinoTool
 
         static Gizmos()
         {
-            _arrowMesh = MeshUtility.LoadMesh("_assets/_models/3DSingleArrow.obj", false);
+            //_arrowMesh = MeshUtility.LoadMesh("_assets/_models/3DSingleArrow.obj", false);
             Entities = new List<GizmoEntity>();
             Renderers = new List<MeshRenderer>();
         }
 
         public static void DragableArrow(vec3 position, vec3 direction, Action<vec3> result)
         {
-            var gizmo = new ArrowGizmo(Entities.Count + 1, _arrowMesh, position, direction, result);
+            //var gizmo = new ArrowGizmo(Entities.Count + 1, _arrowMesh, position, direction, result);
 
-            Renderers.Add(gizmo.Renderer);
-            gizmo.Renderer.transform = gizmo.transform;
+            //Renderers.Add(gizmo.Renderer);
+            //gizmo.Renderer.transform = gizmo.transform;
 
-            //gizmo.transform.localEulerAngles = LookAt2D(direction);
-            Entities.Add(gizmo);
+            ////gizmo.transform.localEulerAngles = LookAt2D(direction);
+            //Entities.Add(gizmo);
         }
 
         internal static void RenderGizmos(Camera cam)
