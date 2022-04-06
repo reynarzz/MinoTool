@@ -116,7 +116,7 @@ namespace LevelBuilder
 
 ```
 ## Port to MinoTool:
-The (WIP) architecture of MinoTool is almost identical to Unity3D, which helps make the tool porting as smooth as possible.
+The (WIP) architecture of MinoTool is almost identical to Unity3D, which helps to make the tools porting as smooth as possible.
 
 ```c#
 using MinoTool;
