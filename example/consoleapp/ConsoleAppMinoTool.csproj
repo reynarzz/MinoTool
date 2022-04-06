@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <StartupObject>ConsoleAppMinoTool.Program</StartupObject>
+    <DisableImplicitNamespaceImports>true</DisableImplicitNamespaceImports>
+  </PropertyGroup>
+ 
+  <ItemGroup>
+    <Reference Include="MinoTool">
+      <HintPath>third\MinoTool.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy /Y $(ProjectDir)third\cimgui.dll $(OutDir)cimgui.dll&#xD;&#xA;copy /Y $(ProjectDir)third\glfw3.dll $(OutDir)glfw3.dll" />
+  </Target>
+
+</Project>
