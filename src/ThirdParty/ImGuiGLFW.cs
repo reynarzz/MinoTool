@@ -4,7 +4,7 @@ using System.Text;
 using GLFW;
 using MinoGUI;
 
-namespace MinoEngine.ThirdParty
+namespace MinoTool.ThirdParty
 {
     public static class ImGuiGLFW
     {

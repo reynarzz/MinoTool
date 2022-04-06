@@ -12,7 +12,7 @@ namespace MinoTool
         public int TargetFps { get; set; } = 60;
 
         /// <summary>Time since the app started.</summary>
-        public float AppTime { get; private set; }
+        private float AppTime { get; set; }
 
         /// <summary>Delta time.</summary>
         public float DeltaTime { get; private set; }
@@ -29,13 +29,13 @@ namespace MinoTool
         public int FPS => _currentFPS;
         public static float deltaTime { get; private set; }
         public static float time { get; private set; }
-        public Time()
+        internal Time()
         {
             _stopWatch = new Stopwatch();
             _stopWatch.Start();
         }
 
-        public void Update()
+        internal void Update()
         {
             var elapsed = _stopWatch.ElapsedMilliseconds / (float)_secondAsMillisecond;
             var deltaTime = elapsed - _prevElapsed;

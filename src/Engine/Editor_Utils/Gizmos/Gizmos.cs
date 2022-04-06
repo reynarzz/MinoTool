@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using GlmNet;
 using static OpenGL.GL;
 
 namespace MinoTool
 {
+    [Obsolete]
     public static class Gizmos
     {
         internal static List<GizmoEntity> Entities { get; set; }

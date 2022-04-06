@@ -7,7 +7,7 @@ namespace ConsoleAppMinoTool
     {
         public static void Main()
         {
-            Mino.Run<CustomUI>("Custom UI");
+            Mino.Run<CustomUI>();
         }
     }
 }
