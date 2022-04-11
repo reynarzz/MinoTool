@@ -68,7 +68,7 @@ Powered by the Unity's old GUI system.
 ![](readmefiles/unity3D_original_tool.gif)
 
 ## And this is the port to MinoTool:  OpenGl 3.3, dear Imgui, C#
-Showcasing object selection and box stack modification.
+Box stack modification.
 ![](readmefiles/standalone_tool_3d.gif)
 
 #### just minor changes to the original Unity editor code were made to port the core of the tool!
