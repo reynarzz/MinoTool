@@ -161,8 +161,6 @@ namespace LevelBuilder
                 if (IMGUI.CollapsingHeader(SecondaryPropsTitle, ImGuiTreeNodeFlags.DefaultOpen))
                 ...
 ```
-## Gameplay showing the final edited level (Unity3D)
-![](readmefiles/level_gameplay.gif)
 
 ### To Do
 - [ ] Refactor.
