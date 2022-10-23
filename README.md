@@ -67,7 +67,7 @@ The imgui demo window and a tool bar.
 Powered by the Unity's old GUI system.
 ![](readmefiles/unity3D_original_tool.gif)
 
-## And this is the port to MinoTool:  OpenGl 3.3, dear Imgui, C#
+## And this is the port to MinoTool:  OpenGL 3.3, dear Imgui, C#
 Box stack modification.
 ![](readmefiles/standalone_tool_3d.gif)
 
