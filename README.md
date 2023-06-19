@@ -1,10 +1,11 @@
 ## MinoTool
 A custom C# - OpenGL standalone lib to create tools easier!
 
-### Simple Dear ImGui implementation: 
-If you have used Dear ImGui in the past there is not more to it apart from an easy to implement API:
+## Simple Dear ImGui implementation: 
+If you have used Dear ImGui in the past there is not more to it apart from an easy to implement API. 
+#### Build, import the libs to your app, and: 
 
-Main.cs
+### Main.cs
 ```c#
 using MinoTool;
 
@@ -14,13 +15,17 @@ namespace Program
     {
         public static void Main()
         {
+            // Window name.
+            // Screen width.
+            // Screen height.
+            
             Mino.Run<CustomUI>("Mino tool", 1324, 600);
         }
     }
 }
 ```
 
-CustomUI.cs
+### CustomUI.cs
 ```c#
 using MinoTool;
 using MinoGUI;
@@ -52,18 +57,18 @@ namespace MinoMain
 }
 ```
 ### And this is the result:
-
+The imgui demo window and a tool bar.
 ![](readmefiles/basic.png)
 
-# But is that all you can do with it? 
+# But... is that all you can do with it? 
 
 #### You can do some interesting tools when taking advantage of its (wip) 3D renderer.
 ## Here is a tool I made for my own game in Unity3D. 
 Powered by the Unity's old GUI system.
 ![](readmefiles/unity3D_original_tool.gif)
 
-## And this is the port to MinoTool:  OpenGl 3.3, dear Imgui, C#
-Showcasing object selection and box stack modification.
+## And this is the port to MinoTool:  OpenGL 3.3, dear Imgui, C#
+Box stack modification.
 ![](readmefiles/standalone_tool_3d.gif)
 
 #### just minor changes to the original Unity editor code were made to port the core of the tool!
@@ -111,6 +116,7 @@ namespace LevelBuilder
 
 ```
 ## Port to MinoTool:
+The (WIP) architecture of MinoTool is almost identical to Unity3D, which helps to make the tools porting as smooth as possible.
 
 ```c#
 using MinoTool;
@@ -155,8 +161,6 @@ namespace LevelBuilder
                 if (IMGUI.CollapsingHeader(SecondaryPropsTitle, ImGuiTreeNodeFlags.DefaultOpen))
                 ...
 ```
-## Gameplay showing the final edited level (Unity3D)
-![](readmefiles/level_gameplay.gif)
 
 ### To Do
 - [ ] Refactor.
