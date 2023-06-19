@@ -22,7 +22,7 @@ namespace MinoTool
 
             if (ui.BeginMenu("About"))
             {
-                ui.Text("Mino Tool by Reynardo Perez");
+                ui.Text("By 'reynarz'");
                 ui.EndMenu();
             }
 

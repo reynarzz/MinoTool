@@ -72,7 +72,7 @@ namespace MinoTool
             };
         }
 
-        public void Run<T>(string appName, GraphicsBackend backend, int srcWidth, int scrHeight) where T : MinoApp, new()
+        public void Run<T>(string appName, int srcWidth, int scrHeight, GraphicsBackend backend) where T : MinoApp, new()
         {
             if (!_isRunning)
             {

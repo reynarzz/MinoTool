@@ -17,11 +17,18 @@ namespace MinoTool
             _engine = new MinoEngineEntry();
         }
 
-        public static void Run<T>(string windowName = _defWTitle, 
-                                  GraphicsBackend backend = GraphicsBackend.OpenGL, 
-                                  int scrWidth = _defScrWidth, int scrHeight = _defScrHigth) where T : MinoApp, new()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="windowName"></param>
+        /// <param name="scrWidth"></param>
+        /// <param name="scrHeight"></param>
+        /// <param name="backend">Only OpenGL is available at this point.</param>
+        public static void Run<T>(string windowName = _defWTitle, int scrWidth = _defScrWidth, 
+                                  int scrHeight = _defScrHigth, GraphicsBackend backend = GraphicsBackend.OpenGL) where T : MinoApp, new()
         {
-            _engine.Run<T>(windowName, backend, scrWidth, scrHeight);
+            _engine.Run<T>(windowName, scrWidth, scrHeight, backend);
         }
 
         public static void Close()

@@ -46,7 +46,7 @@ namespace MinoTool
             // Center window
             var screen = Glfw.PrimaryMonitor.WorkArea;
 
-            Glfw.SetWindowSizeLimits(WindowInfo, 1000, 500, screen.Width, screen.Height);
+            //--Glfw.SetWindowSizeLimits(WindowInfo, 1000, 500, screen.Width, screen.Height);
            
 
             var x = (screen.Width - width) / 2;
