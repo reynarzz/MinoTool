@@ -7,21 +7,34 @@ using System.IO;
 
 namespace MinoTool
 {
+    public enum TextureFilterMode
+    {
+        Linear,
+        Nearest
+    }
+
+    public enum TextureFormat
+    {
+        RGBA = GL_RGBA,
+        BGR = GL_BGR,
+        BGRA = GL_BGRA
+    }
+
     public unsafe class Texture : Entity
     {
         private uint _textureID;
 
         private int _width;
         private int _height;
-        internal uint TextureID => _textureID;
+        public uint TextureID => _textureID;
 
         public int Width => _width;
         public int Height => _height;
         private int _bindedTexUnit;
 
-        public Texture(string path)
+        public Texture(string path, bool flipVertically = true)
         {
-            SetImage(path, GL_UNSIGNED_BYTE);
+            SetImage(path, GL_UNSIGNED_BYTE, flipVertically);
         }
 
         //internal Texture(string path, int type = GL_UNSIGNED_BYTE)
@@ -34,30 +47,37 @@ namespace MinoTool
             GenEmptyTex(width, height);
         }
 
-        internal Texture(int width, int height, IntPtr pixels)
+        public Texture(int width, int height, IntPtr pixels, TextureFilterMode filter = TextureFilterMode.Linear, int internalFormat = GL_RGBA8, int format = GL_RGBA)
         {
-            GenEmptyTex(width, height);
-
+            GenEmptyTex(width, height, filter);
+            
             glActiveTexture(GL_TEXTURE0);
             Bind(0);
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+            glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, pixels);
             Unbind();
         }
 
-        private void GenEmptyTex(int width, int height)
+        private void GenEmptyTex(int width, int height, TextureFilterMode filter = TextureFilterMode.Linear)
         {
             _width = width;
             _height = height;
 
             _textureID = glGenTexture();
 
+            var mode = GL_LINEAR;
+
+            if (filter == TextureFilterMode.Nearest)
+            {
+                mode = GL_NEAREST;
+            }
+
             //glActiveTexture(GL_TEXTURE0);
             glBindTexture(GL_TEXTURE_2D, _textureID);
 
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
 
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //GL_LINEAR
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, mode); //GL_LINEAR
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, mode);
 
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
@@ -65,9 +85,12 @@ namespace MinoTool
             glBindTexture(GL_TEXTURE_2D, 0);
         }
 
-        internal void SetImage(string path, int type)
+        internal void SetImage(string path, int type, bool flipVertically = true)
         {
-            StbImage.stbi_set_flip_vertically_on_load(1);
+            if (flipVertically)
+            {
+                StbImage.stbi_set_flip_vertically_on_load(1);
+            }
 
             ImageReader loader = new ImageReader();
             using (Stream stream = File.Open(path, FileMode.Open))

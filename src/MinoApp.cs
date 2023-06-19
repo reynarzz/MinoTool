@@ -8,7 +8,7 @@ namespace MinoTool
         public Time Time { get; internal set; }
         public Camera MainCamera { get; internal set; }
         public Assets Assets { get; internal set; }
-        public InputManager Input { get; internal set; }
+        //public InputManager Input { get; internal set; }
 
         public virtual void OnAppStart() { }
         public virtual void OnUpdate() { }

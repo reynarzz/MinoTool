@@ -10,8 +10,8 @@ namespace MinoTool
         public static int Heigh { get; internal set; }
         public static int Width { get; internal set; }
 
-        public const int UI_RefHeigh = 540;
-        public const int UI_RefWidth = 960;
+        internal const int UI_RefHeigh = 540;
+        internal const int UI_RefWidth = 960;
     }
 
     public class AppWindow

@@ -5,6 +5,12 @@ using System;
 
 namespace MinoTool
 {
+    public enum CameraProjection
+    {
+        Perspective,
+        Ortographic
+    }
+
     public class Camera : Component
     {
         public mat4 Projection { get; private set; }
@@ -12,9 +18,12 @@ namespace MinoTool
         private const float _degrees = 45;
         private const float _degToRad = MathF.PI / 180.0f;
 
-        private const float _fov = _degrees * _degToRad;
+        private float _fov = _degrees * _degToRad;
         private const float _farPlane = 300.0f;
         private const float _nearPlane = 1.0f;
+
+        /// <summary>FOV in degrees</summary>
+        public float FOV { get => _fov; set => _fov = value * _degToRad; }
 
         public Transform Transform_Test { get; private set; }
         private readonly Window _window;
@@ -42,25 +51,57 @@ namespace MinoTool
         public vec3 Right { get; private set; }
         public vec3 Up { get; private set; }
 
+        private float _ortoh;
+        private float _ortoV;
+
         public Camera(AppWindow window) : base()
         {
             _window = window.WindowInfo;
             Transform_Test = new Transform(gameObject);
 
-            window.OnViewportSizeChanged += UpdatePerspective;
+            window.OnViewportSizeChanged += UpdateProjection;
 
             //_callback = MouseDelta;
             //_scrollCallback = ScrollCallback;
 
-            UpdatePerspective(window.WindowInfo, window.Width, window.Height);
+            UpdateProjection(window.WindowInfo, window.Width, window.Height);
         }
 
-        private void UpdatePerspective(Window window, int width, int height)
+        private void UpdateProjection(Window window, int width, int height)
         {
             _width = width;
             _height = height;
 
-            Projection = glm.perspective(_fov, width / (float)height, _nearPlane, _farPlane);
+            _ortoh = _width;
+            _ortoV = _height;
+
+            if (_projType == CameraProjection.Perspective)
+            {
+                Projection = glm.perspective(_fov, width / (float)height, _nearPlane, _farPlane);
+            }
+            else
+            {
+                Projection = glm.ortho(-_width, _width, -_height, _height, _nearPlane, _farPlane);
+            }
+        }
+
+        private CameraProjection _projType;
+        public CameraProjection ProjectionMode
+        {
+            get => _projType;
+            set
+            {
+                _projType = value;
+
+                if (_projType == CameraProjection.Perspective)
+                {
+                    Projection = glm.perspective(_fov, _width / (float)_height, _nearPlane, _farPlane);
+                }
+                else if (_projType == CameraProjection.Ortographic)
+                {
+                    Projection = glm.ortho(-_ortoh, _ortoh, -_ortoh, _ortoh, _nearPlane, _farPlane);
+                }
+            }
         }
 
         internal void Update(Time time)
@@ -72,7 +113,7 @@ namespace MinoTool
             if (IsKey(Keys.W))
             {
                 //Logg.Warning("Up");
-                Transform_Test.position += new vec3(0, 0, 1)  * time.DeltaTime * _moveSpeed;
+                Transform_Test.position += new vec3(0, 0, 1) * time.DeltaTime * _moveSpeed;
             }
 
             if (IsKey(Keys.S))
@@ -95,23 +136,35 @@ namespace MinoTool
                 // Logg.Warning("left");
             }
 
-            if (!IMGUI.IsWindowHovered(ImGuiHoveredFlags.AnyWindow))
+            //if (!IMGUI.IsWindowHovered(ImGuiHoveredFlags.AnyWindow))
+            //{
+            //    if (_projType == CameraProjection.Perspective)
+            //    {
+            //        Transform_Test.position += new vec3(0, 0, Input.MouseScrollDelta.y * _mouseMovementSpeed / 8);
+            //    }
+            //    else
+            //    {
+            //        _ortoh = Math.Clamp(_ortoh - Input.MouseScrollDelta.y , 0, Screen.Width);
+            //        _ortoV = Math.Clamp(_ortoV - Input.MouseScrollDelta.y , 0, Screen.Heigh);
+
+            //        Projection = glm.ortho(-_ortoh / 2f, _ortoh / 2f, -_ortoV / 2f, _ortoV / 2f, _nearPlane, _farPlane);
+            //    }
+            //}
+
+            if (_projType == CameraProjection.Perspective)
             {
-                Transform_Test.position += new vec3(0, 0, Input.MouseScrollDelta.y * _mouseMovementSpeed / 8);
+                if (IsMouseButton(MouseButton.Button1) && IsKey(Keys.LeftAlt))
+                {
+                    //Transform_Test.eulerAngles = new vec3(Transform_Test.eulerAngles.x + Input.MousePositionDelta.y * _mouseMovementSpeed * 3.4f, Transform_Test.eulerAngles.y + Input.MousePositionDelta.x * _mouseMovementSpeed * 3.4f, 0);
+
+                    //glm.lookAt(new vec3());
+                    // Transform_Test.eulerAngles = //new vec3(Transform_Test.eulerAngles.x + Input.MousePositionDelta.y * _mouseMovementSpeed * 3.4f, Transform_Test.eulerAngles.y + Input.MousePositionDelta.x * _mouseMovementSpeed * 3.4f, 0);
+                    mouse_callback(Input.MousePosition.x, Input.MousePosition.y);
+
+                    var target = new vec3(0, 0, 0);
+                    NormalizedDirection = glm.normalize(Transform_Test.position - target);
+                }
             }
-
-            if (IsMouseButton(MouseButton.Button1) && IsKey(Keys.LeftAlt))
-            {
-                //Transform_Test.eulerAngles = new vec3(Transform_Test.eulerAngles.x + Input.MousePositionDelta.y * _mouseMovementSpeed * 3.4f, Transform_Test.eulerAngles.y + Input.MousePositionDelta.x * _mouseMovementSpeed * 3.4f, 0);
-
-                //glm.lookAt(new vec3());
-                // Transform_Test.eulerAngles = //new vec3(Transform_Test.eulerAngles.x + Input.MousePositionDelta.y * _mouseMovementSpeed * 3.4f, Transform_Test.eulerAngles.y + Input.MousePositionDelta.x * _mouseMovementSpeed * 3.4f, 0);
-                mouse_callback(Input.MousePosition.x, Input.MousePosition.y);
-
-                var target = new vec3(0, 0, 0);
-                NormalizedDirection = glm.normalize(Transform_Test.position - target);
-            }
-
             if (IsMouseButton(MouseButton.Button3))
             {
                 Transform_Test.position = new vec3(Transform_Test.position.x + Input.MousePositionDelta.x * _mouseMovementSpeed, Transform_Test.position.y + -Input.MousePositionDelta.y * _mouseMovementSpeed, Transform_Test.position.z);

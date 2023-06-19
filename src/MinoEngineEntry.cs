@@ -37,11 +37,7 @@ namespace MinoTool
             Screen.Width = width;
             Screen.Heigh = height;
 
-            _appSandbox = new T();
-            _appSandbox.Time = _time;
-            _appSandbox.MainCamera = _mainCamera;
-            _appSandbox.Assets = _assets;
-            _appSandbox.Input = _input;
+           
 
             var window = new AppWindow();
 
@@ -57,9 +53,15 @@ namespace MinoTool
             _renderer = new MinoRenderer(window, EntitiesManager.Instance.Renderables) { MainCamera = _mainCamera };
 
             _assets = new Assets();
-            _engineEditorUI = new EngineEditorUI(_appSandbox.OnToolbarGUI);
             _input = new InputManager(window);
 
+            _appSandbox = new T();
+            _appSandbox.Time = _time;
+            _appSandbox.MainCamera = _mainCamera;
+            _appSandbox.Assets = _assets;
+            //_appSandbox.Input = _input;
+
+            _engineEditorUI = new EngineEditorUI(_appSandbox.OnToolbarGUI);
 
             // Start sanbox.
             _appSandbox.OnAppStart();
