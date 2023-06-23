@@ -22,7 +22,7 @@ namespace MinoTool
 
             _controller = new ImGuiController(width, height);
             MinoTheme();
-            //Style2();
+           // Style2();
         }
 
         public void OnResize(int width, int height)
@@ -50,26 +50,26 @@ namespace MinoTool
         private void MinoTheme()
         {
             var style = IMGUI.GetStyle();
-            style.WindowRounding = 15;
+            style.WindowRounding = 0;
             style.ChildRounding = 15f;
-            style.FrameRounding = 5f;
+            style.FrameRounding = 2f;
             style.GrabRounding = 5f;
-            style.ScrollbarSize = 9;
+            style.ScrollbarSize = 11;
             style.WindowTitleAlign = new System.Numerics.Vector2(0.1f, 0.5f);
             // style.ItemSpacing = new System.Numerics.Vector2(5, 5);
             var colors = IMGUI.GetStyle().Colors;
 
             colors[(int)ImGuiCol.Text] = new ImVec4(0.90f, 0.90f, 0.90f, 0.90f);
             colors[(int)ImGuiCol.TextDisabled] = new ImVec4(0.60f, 0.60f, 0.60f, 1.00f);
-            colors[(int)ImGuiCol.WindowBg] = new ImVec4(0.12f, 0.12f, 0.12f, 0.93f);
+            colors[(int)ImGuiCol.WindowBg] = new ImVec4(0.2f, 0.2f, 0.2f, 0.93f);
             colors[(int)ImGuiCol.ChildBg] = new ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
             colors[(int)ImGuiCol.PopupBg] = new ImVec4(0.05f, 0.05f, 0.10f, 0.85f);
             colors[(int)ImGuiCol.Border] = new ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
             colors[(int)ImGuiCol.BorderShadow] = new ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
-            colors[(int)ImGuiCol.FrameBg] = new ImVec4(0.00f, 0.00f, 0.01f, 1.00f);
-            colors[(int)ImGuiCol.FrameBgHovered] = new ImVec4(0.30f, 0.30f, 0.30f, 0.40f);
+            colors[(int)ImGuiCol.FrameBg] = new ImVec4(0.1f, 0.1f, 0.1f, 0.40f); 
+            colors[(int)ImGuiCol.FrameBgHovered] = new ImVec4(0.4f, 0.4f, 0.4f, 1.00f);
             colors[(int)ImGuiCol.FrameBgActive] = new ImVec4(0.68f, 0.68f, 0.68f, 0.45f);
-            colors[(int)ImGuiCol.TitleBg] = new ImVec4(0.10f, 0.10f, 0.10f, 0.83f);
+            colors[(int)ImGuiCol.TitleBg] = new ImVec4(0.20f, 0.20f, 0.20f, 0.83f);
             colors[(int)ImGuiCol.TitleBgActive] = new ImVec4(0.13f, 0.13f, 0.13f, 0.87f);
             colors[(int)ImGuiCol.TitleBgCollapsed] = new ImVec4(0.40f, 0.40f, 0.80f, 0.20f);
             colors[(int)ImGuiCol.MenuBarBg] = new ImVec4(0.00f, 0.00f, 0.00f, 0.80f);

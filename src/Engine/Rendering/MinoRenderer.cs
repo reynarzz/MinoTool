@@ -86,6 +86,7 @@ namespace MinoTool
             glClearColor(BackgroundColor.r, BackgroundColor.g, BackgroundColor.b, BackgroundColor.a);
 
             _mainFrameBuffer.Bind();
+
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
             glViewport(0, 0, _mainFrameBuffer.Width, _mainFrameBuffer.Height);
@@ -94,6 +95,9 @@ namespace MinoTool
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             glEnable(GL_DEPTH_TEST);
             //glDepthFunc(GL_LEQUAL);
+
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 
             for (int i = 0; i < _container.Count; i++)
@@ -158,6 +162,8 @@ namespace MinoTool
             glBindTexture(GL_TEXTURE_2D, _mainFrameBuffer.ColotTex);
 
             glDrawElements(GL_TRIANGLES, _quad.Indices);
+
+            _screenSpaceQuadMaterial.Unbind();
         }
     }
 }

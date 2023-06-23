@@ -20,7 +20,7 @@ namespace MinoTool
 
         private float _fov = _degrees * _degToRad;
         private const float _farPlane = 300.0f;
-        private const float _nearPlane = 1.0f;
+        private const float _nearPlane = 0.01f;
 
         /// <summary>FOV in degrees</summary>
         public float FOV { get => _fov; set => _fov = value * _degToRad; }

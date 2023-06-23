@@ -65,10 +65,10 @@ void main()
 {
 vec4 c = texture2D(_tex0, _uv);
 
- if(c.x == 0 && c.y == 0 && c.z == 0)
-{
- c = vec4(1.);
-}
+ //if(c.x == 0 && c.y == 0 && c.z == 0)
+//{
+ //c = vec4(1.);
+//}
     fragColor = c * _Color;
 }";
 

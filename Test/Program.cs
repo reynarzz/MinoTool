@@ -1,4 +1,5 @@
-﻿using MinoTool;
+﻿using MinoGUI;
+using MinoTool;
 using System;
 
 namespace Test
@@ -12,7 +13,10 @@ namespace Test
 
         private class ClassApp : MinoApp
         {
-
+            public override void OnGUI()
+            {
+                IMGUI.ShowDemoWindow();
+            }
         }
     }
 }
