@@ -85,7 +85,7 @@ namespace MinoTool
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             glClearColor(BackgroundColor.r, BackgroundColor.g, BackgroundColor.b, BackgroundColor.a);
 
-            _mainFrameBuffer.Bind();
+            //--_mainFrameBuffer.Bind();
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -107,6 +107,8 @@ namespace MinoTool
 
                 if (renderer.enabled)
                 {
+                    glBindTexture(GL_TEXTURE_2D, 0);
+
                     var mesh = renderer.GetMesh();
 
                     renderer.Bind(MainCamera.Transform_Test.TransformMatrix, MainCamera.Projection);
@@ -153,17 +155,17 @@ namespace MinoTool
 
             glViewport(0, 0, Screen.Width, Screen.Heigh);
 
-            _quad.Bind();
+            //--_quad.Bind();
 
-            _screenSpaceQuadMaterial.Bind(GlmNet.mat4.identity(), GlmNet.mat4.identity(), GlmNet.mat4.identity());
+            //--_screenSpaceQuadMaterial.Bind(GlmNet.mat4.identity(), GlmNet.mat4.identity(), GlmNet.mat4.identity());
             //_screenSpaceQuadMaterial.color = Color.red;
 
             glActiveTexture(0);
-            glBindTexture(GL_TEXTURE_2D, _mainFrameBuffer.ColotTex);
+            //--glBindTexture(GL_TEXTURE_2D, _mainFrameBuffer.ColotTex);
 
-            glDrawElements(GL_TRIANGLES, _quad.Indices);
+            //--glDrawElements(GL_TRIANGLES, _quad.Indices);
 
-            _screenSpaceQuadMaterial.Unbind();
+            //--_screenSpaceQuadMaterial.Unbind();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GLFW;
+using System;
 
 namespace MinoTool
 {
@@ -9,6 +10,11 @@ namespace MinoTool
         public Camera MainCamera { get; internal set; }
         public Assets Assets { get; internal set; }
         //public InputManager Input { get; internal set; }
+        internal event Action<CursorType> OnCursorChange;
+        protected void ChangeCursor(CursorType cursor)
+        {
+            OnCursorChange(cursor);
+        }
 
         public virtual void OnAppStart() { }
         public virtual void OnUpdate() { }

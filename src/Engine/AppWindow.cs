@@ -71,6 +71,13 @@ namespace MinoTool
             return WindowInfo;
         }
 
+        public void ChangeCursor(CursorType cursorType)
+        {
+            var cursor = Glfw.CreateStandardCursor(cursorType);
+
+            Glfw.SetCursor(WindowInfo, cursor);
+        }
+
         private static void InitContext()
         {
             // Context

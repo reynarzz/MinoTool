@@ -59,6 +59,8 @@ namespace MinoTool
             _appSandbox.Time = _time;
             _appSandbox.MainCamera = _mainCamera;
             _appSandbox.Assets = _assets;
+            _appSandbox.OnCursorChange += window.ChangeCursor;
+
             //_appSandbox.Input = _input;
 
             _engineEditorUI = new EngineEditorUI(_appSandbox.OnToolbarGUI);
