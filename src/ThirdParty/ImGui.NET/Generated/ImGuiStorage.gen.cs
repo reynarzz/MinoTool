@@ -3,7 +3,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace MinoGUI
+namespace ImGuiNET
 {
     public unsafe partial struct ImGuiStorage
     {
@@ -17,7 +17,7 @@ namespace MinoGUI
         public static implicit operator ImGuiStoragePtr(ImGuiStorage* nativePtr) => new ImGuiStoragePtr(nativePtr);
         public static implicit operator ImGuiStorage* (ImGuiStoragePtr wrappedPtr) => wrappedPtr.NativePtr;
         public static implicit operator ImGuiStoragePtr(IntPtr nativePtr) => new ImGuiStoragePtr(nativePtr);
-        public ImPtrVector<ImGuiStoragePairPtr> Data => new ImPtrVector<ImGuiStoragePairPtr>(NativePtr->Data, Unsafe.SizeOf<ImGuiStoragePair>());
+        public ImVector<IntPtr> Data => new ImVector<IntPtr>(NativePtr->Data);
         public void BuildSortByKey()
         {
             ImGuiNative.ImGuiStorage_BuildSortByKey((ImGuiStorage*)(NativePtr));

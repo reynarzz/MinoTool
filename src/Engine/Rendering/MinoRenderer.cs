@@ -99,12 +99,11 @@ namespace MinoTool
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-
             for (int i = 0; i < _container.Count; i++)
             {
                 // Background Color.
                 var renderer = _container.GetRenderer(i);
-
+                
                 if (renderer.enabled)
                 {
                     glBindTexture(GL_TEXTURE_2D, 0);

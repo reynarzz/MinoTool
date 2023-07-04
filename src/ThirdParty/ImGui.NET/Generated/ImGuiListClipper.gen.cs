@@ -3,16 +3,17 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace MinoGUI
+namespace ImGuiNET
 {
     public unsafe partial struct ImGuiListClipper
     {
         public int DisplayStart;
         public int DisplayEnd;
         public int ItemsCount;
+        public int StepNo;
+        public int ItemsFrozen;
         public float ItemsHeight;
         public float StartPosY;
-        public void* TempData;
     }
     public unsafe partial struct ImGuiListClipperPtr
     {
@@ -25,9 +26,10 @@ namespace MinoGUI
         public ref int DisplayStart => ref Unsafe.AsRef<int>(&NativePtr->DisplayStart);
         public ref int DisplayEnd => ref Unsafe.AsRef<int>(&NativePtr->DisplayEnd);
         public ref int ItemsCount => ref Unsafe.AsRef<int>(&NativePtr->ItemsCount);
+        public ref int StepNo => ref Unsafe.AsRef<int>(&NativePtr->StepNo);
+        public ref int ItemsFrozen => ref Unsafe.AsRef<int>(&NativePtr->ItemsFrozen);
         public ref float ItemsHeight => ref Unsafe.AsRef<float>(&NativePtr->ItemsHeight);
         public ref float StartPosY => ref Unsafe.AsRef<float>(&NativePtr->StartPosY);
-        public IntPtr TempData { get => (IntPtr)NativePtr->TempData; set => NativePtr->TempData = (void*)value; }
         public void Begin(int items_count)
         {
             float items_height = -1.0f;
@@ -44,10 +46,6 @@ namespace MinoGUI
         public void End()
         {
             ImGuiNative.ImGuiListClipper_End((ImGuiListClipper*)(NativePtr));
-        }
-        public void ForceDisplayRangeByIndices(int item_min, int item_max)
-        {
-            ImGuiNative.ImGuiListClipper_ForceDisplayRangeByIndices((ImGuiListClipper*)(NativePtr), item_min, item_max);
         }
         public bool Step()
         {

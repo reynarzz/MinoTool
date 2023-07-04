@@ -1,5 +1,5 @@
 ﻿using GlmNet;
-using MinoGUI;
+using ImGuiNET;
 
 using System;
 using System.Collections.Generic;
@@ -39,9 +39,9 @@ namespace MinoTool
             _windowWidth = width;
             _windowHeight = height;
 
-            IntPtr context = IMGUI.CreateContext();
-            IMGUI.SetCurrentContext(context);
-            var io = IMGUI.GetIO();
+            IntPtr context = ImGui.CreateContext();
+            ImGui.SetCurrentContext(context);
+            var io = ImGui.GetIO();
             io.Fonts.AddFontDefault();
 
             io.BackendFlags |= ImGuiBackendFlags.RendererHasVtxOffset;
@@ -50,7 +50,7 @@ namespace MinoTool
 
             SetPerFrameImGuiData(1f / 60f);
             
-            IMGUI.NewFrame();
+            ImGui.NewFrame();
             _frameBegun = true;
         }
 
@@ -157,7 +157,7 @@ void main()
         /// </summary>
         public void RecreateFontDeviceTexture()
         {
-            ImGuiIOPtr io = IMGUI.GetIO();
+            ImGuiIOPtr io = ImGui.GetIO();
             _font = io.Fonts.AddFontFromFileTTF("_assets/Fonts/Inconsolata-Regular.ttf", 15.0f);
 
 
@@ -183,12 +183,12 @@ void main()
             {
                 _frameBegun = false;
 
-                IMGUI.Render();
+                ImGui.Render();
 
 
-                RenderImDrawData(IMGUI.GetDrawData());
+                RenderImDrawData(ImGui.GetDrawData());
 
-                //Util.CheckGLError("Imgui Controller");
+                //Util.CheckGLError("ImGui Controller");
             }
         }
 
@@ -217,7 +217,7 @@ void main()
         /// </summary>
         private void SetPerFrameImGuiData(float deltaSeconds)
         {
-            ImGuiIOPtr io = IMGUI.GetIO();
+            ImGuiIOPtr io = ImGui.GetIO();
             io.DisplaySize = new System.Numerics.Vector2(
                 _windowWidth / _scaleFactor.X,
                 _windowHeight / _scaleFactor.Y);
@@ -286,7 +286,7 @@ void main()
                 glBindBuffer(GL_ARRAY_BUFFER, 0);
 
                 // Setup orthographic projection matrix into our constant buffer
-                ImGuiIOPtr io = IMGUI.GetIO();
+                ImGuiIOPtr io = ImGui.GetIO();
 
                 mat4 mvp = glm.ortho(
                     0.0f,

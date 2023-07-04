@@ -1,6 +1,6 @@
 ﻿using GLFW;
 using GlmNet;
-using MinoGUI;
+using ImGuiNET;
 using System;
 
 namespace MinoTool
@@ -136,7 +136,7 @@ namespace MinoTool
                 // Logg.Warning("left");
             }
 
-            //if (!IMGUI.IsWindowHovered(ImGuiHoveredFlags.AnyWindow))
+            //if (!ImGui.IsWindowHovered(ImGuiHoveredFlags.AnyWindow))
             //{
             //    if (_projType == CameraProjection.Perspective)
             //    {

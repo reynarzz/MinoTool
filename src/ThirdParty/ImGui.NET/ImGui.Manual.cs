@@ -4,9 +4,9 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace MinoGUI
+namespace ImGuiNET
 {
-    public static unsafe partial class IMGUI
+    public static unsafe partial class ImGui
     {
         public static bool InputText(
             string label,

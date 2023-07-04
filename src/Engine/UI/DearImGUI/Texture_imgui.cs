@@ -10,11 +10,11 @@ using static OpenGL.GL;
 
 namespace Dear_ImGui_Sample
 {
-    public class Texture_imgui : IDisposable
+    public class Texture_ImGui : IDisposable
     {
         public uint TextureID { get; set; }
 
-        public Texture_imgui(int width, int height, IntPtr data, bool generateMipmaps = false, bool srgb = false)
+        public Texture_ImGui(int width, int height, IntPtr data, bool generateMipmaps = false, bool srgb = false)
         {
             var Width = width;
             var Height = height;

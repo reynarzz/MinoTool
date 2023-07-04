@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace MinoGUI
+namespace ImGuiNET
 {
     public unsafe struct RangeAccessor<T> where T : struct
     {

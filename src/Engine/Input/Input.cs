@@ -1,6 +1,6 @@
 ﻿using GLFW;
 using GlmNet;
-using MinoGUI;
+using ImGuiNET;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -101,7 +101,7 @@ namespace MinoTool
             {
                 _mouseDown = true;
 
-                if (!IMGUI.IsAnyItemHovered() && !IMGUI.IsWindowHovered(ImGuiHoveredFlags.AnyWindow))
+                if (!ImGui.IsAnyItemHovered() && !ImGui.IsWindowHovered(ImGuiHoveredFlags.AnyWindow))
                 {
                     Input.OnMouseButtonDown(button);
                 }

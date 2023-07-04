@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MinoGUI;
-using ui = MinoGUI.IMGUI;
+using ImGuiNET;
+using ui = ImGuiNET.ImGui;
 
 namespace MinoTool
 {

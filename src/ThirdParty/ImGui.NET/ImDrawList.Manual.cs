@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using System.Text;
 
-namespace MinoGUI
+namespace ImGuiNET
 {
     public unsafe partial struct ImDrawListPtr
     {

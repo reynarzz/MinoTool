@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using GLFW;
-using MinoGUI;
+using ImGuiNET;
 
 namespace MinoTool.ThirdParty
 {
@@ -42,10 +42,10 @@ namespace MinoTool.ThirdParty
             g_Window = window;
             g_Time = 0.0;
             // Setup back-end capabilities flags
-            var io = IMGUI.GetIO();
+            var io = ImGui.GetIO();
             io.BackendFlags |= ImGuiBackendFlags.HasMouseCursors;         // We can honor GetMouseCursor() values (optional)
             io.BackendFlags |= ImGuiBackendFlags.HasSetMousePos;          // We can honor io.WantSetMousePos requests (optional, rarely used)
-            //io.BackendPlatformName = "imgui_impl_glfw";
+            //io.BackendPlatformName = "ImGui_impl_glfw";
 
             // Keyboard mapping. ImGui will use those indices to peek into the io.KeysDown[] array.
             io.KeyMap[(int)ImGuiKey.Tab] = (int)Keys.Tab;
@@ -125,7 +125,7 @@ namespace MinoTool.ThirdParty
         {
             if (g_PrevUserCallbackScroll != null)
                 g_PrevUserCallbackScroll(window, xoffset, yoffset);
-            var io = IMGUI.GetIO();
+            var io = ImGui.GetIO();
             io.MouseWheelH += (float)xoffset;
             io.MouseWheel += (float)yoffset;
         }
@@ -134,7 +134,7 @@ namespace MinoTool.ThirdParty
         {
             if (g_PrevUserCallbackKey != null)
                 g_PrevUserCallbackKey(window, key, scancode, action, mods);
-            var io = IMGUI.GetIO();
+            var io = ImGui.GetIO();
             if (action == InputState.Press)
                 io.KeysDown[(int)key] = true; // can throw an error.
             if (action == InputState.Release)
@@ -149,27 +149,27 @@ namespace MinoTool.ThirdParty
         {
             if (g_PrevUserCallbackChar != null)
                 g_PrevUserCallbackChar(window, c);
-            var io = IMGUI.GetIO();
+            var io = ImGui.GetIO();
             io.AddInputCharacter(c);
         }
 
         public static void ImGui_ImplGlfw_UpdateMouseCursor()
         {
-            var io = IMGUI.GetIO();
+            var io = ImGui.GetIO();
             if ((io.ConfigFlags & ImGuiConfigFlags.NoMouseCursorChange) != 0 || Glfw.GetInputMode(g_Window, InputMode.Cursor) == (int)CursorMode.Disabled)
                 return;
 
-            ImGuiMouseCursor imgui_cursor = IMGUI.GetMouseCursor();
-            if (imgui_cursor == ImGuiMouseCursor.None || io.MouseDrawCursor)
+            ImGuiMouseCursor ImGui_cursor = ImGui.GetMouseCursor();
+            if (ImGui_cursor == ImGuiMouseCursor.None || io.MouseDrawCursor)
             {
-                // Hide OS mouse cursor if imgui is drawing it or if it wants no cursor
+                // Hide OS mouse cursor if ImGui is drawing it or if it wants no cursor
                 Glfw.SetInputMode(g_Window, InputMode.Cursor, (int)CursorMode.Hidden);
             }
             else
             {
                 // Show OS mouse cursor
                 // FIXME-PLATFORM: Unfocused windows seems to fail changing the mouse cursor with GLFW 3.2, but 3.3 works here.
-                Glfw.SetCursor(g_Window, g_MouseCursors[(int)imgui_cursor] != default ? g_MouseCursors[(int)imgui_cursor] : g_MouseCursors[(int)ImGuiMouseCursor.Arrow]);
+                Glfw.SetCursor(g_Window, g_MouseCursors[(int)ImGui_cursor] != default ? g_MouseCursors[(int)ImGui_cursor] : g_MouseCursors[(int)ImGuiMouseCursor.Arrow]);
                 Glfw.SetInputMode(g_Window, InputMode.Cursor, (int)CursorMode.Normal);
             }
         }
@@ -177,7 +177,7 @@ namespace MinoTool.ThirdParty
         public static void ImGui_ImplGlfw_UpdateMousePosAndButtons()
         {
             // Update buttons
-            var io = IMGUI.GetIO();
+            var io = ImGui.GetIO();
             for (int i = 0; i < io.MouseDown.Count; i++)
             {
                 // If a mouse press event came, always pass it as "mouse held this frame", so we don't miss click-release events that are shorter than 1 frame.

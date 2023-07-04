@@ -1,4 +1,4 @@
-namespace MinoGUI
+namespace ImGuiNET
 {
     public enum ImGuiMouseButton
     {

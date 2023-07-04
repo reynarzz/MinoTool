@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace MinoGUI
+namespace ImGuiNET
 {
     public unsafe struct ImVector
     {

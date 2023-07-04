@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MinoGUI;
+using ImGuiNET;
 using static OpenGL.GL;
 using ImVec4 = System.Numerics.Vector4;
 
@@ -21,6 +21,8 @@ namespace MinoTool
             _height = height;
 
             _controller = new ImGuiController(width, height);
+            //ImGui.GetIO().MouseDrawCursor = true;
+
             MinoTheme();
            // Style2();
         }
@@ -42,22 +44,21 @@ namespace MinoTool
             //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
             //ImGui.ShowDemoWindow();
-
             _controller.Render();
             //Util.CheckGLError("End of frame");
         }
 
         private void MinoTheme()
         {
-            var style = IMGUI.GetStyle();
+            var style = ImGui.GetStyle();
             style.WindowRounding = 0;
-            style.ChildRounding = 15f;
+            style.ChildRounding = 2f;
             style.FrameRounding = 2f;
             style.GrabRounding = 5f;
             style.ScrollbarSize = 11;
             style.WindowTitleAlign = new System.Numerics.Vector2(0.1f, 0.5f);
             // style.ItemSpacing = new System.Numerics.Vector2(5, 5);
-            var colors = IMGUI.GetStyle().Colors;
+            var colors = ImGui.GetStyle().Colors;
 
             colors[(int)ImGuiCol.Text] = new ImVec4(0.90f, 0.90f, 0.90f, 1f);
             colors[(int)ImGuiCol.TextDisabled] = new ImVec4(0.60f, 0.60f, 0.60f, 1.00f);
@@ -113,11 +114,11 @@ namespace MinoTool
 
         private void Style2()
         {
-            var io = IMGUI.GetIO();
-            IMGUI.GetStyle().FrameRounding = 4.0f;
-            IMGUI.GetStyle().GrabRounding = 4.0f;
+            var io = ImGui.GetIO();
+            ImGui.GetStyle().FrameRounding = 4.0f;
+            ImGui.GetStyle().GrabRounding = 4.0f;
 
-            var colors = IMGUI.GetStyle().Colors;
+            var colors = ImGui.GetStyle().Colors;
             colors[(int)ImGuiCol.Text] = new ImVec4(0.95f, 0.96f, 0.98f, 1.00f);
             colors[(int)ImGuiCol.TextDisabled] = new ImVec4(0.36f, 0.42f, 0.47f, 1.00f);
             colors[(int)ImGuiCol.WindowBg] = new ImVec4(0.11f, 0.15f, 0.17f, 1.00f);

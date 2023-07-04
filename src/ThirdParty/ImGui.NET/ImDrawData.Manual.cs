@@ -1,4 +1,4 @@
-﻿namespace MinoGUI
+﻿namespace ImGuiNET
 {
     public unsafe partial struct ImDrawDataPtr
     {

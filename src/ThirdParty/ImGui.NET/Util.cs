@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace MinoGUI
+namespace ImGuiNET
 {
     internal static unsafe class Util
     {

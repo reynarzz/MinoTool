@@ -1,4 +1,4 @@
-﻿using MinoGUI;
+﻿using ImGuiNET;
 using MinoTool;
 using System;
 
@@ -15,7 +15,8 @@ namespace Test
         {
             public override void OnGUI()
             {
-                IMGUI.ShowDemoWindow();
+                ImGui.Text(ImGui.GetVersion());
+                ImGui.ShowDemoWindow();
             }
         }
     }

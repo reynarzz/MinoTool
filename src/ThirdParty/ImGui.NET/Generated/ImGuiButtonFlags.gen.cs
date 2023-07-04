@@ -1,4 +1,4 @@
-namespace MinoGUI
+namespace ImGuiNET
 {
     [System.Flags]
     public enum ImGuiButtonFlags

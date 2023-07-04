@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace MinoGUI
+namespace ImGuiNET
 {
     public unsafe struct NullTerminatedString
     {

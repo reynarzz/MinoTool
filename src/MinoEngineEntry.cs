@@ -4,7 +4,7 @@ using System.Text;
 using GLFW;
 using GlmNet;
 using MinoTool.ThirdParty;
-using MinoGUI;
+using ImGuiNET;
 
 namespace MinoTool
 {
@@ -70,6 +70,10 @@ namespace MinoTool
 
             _dearImGuiWindow = new DearImGuiWindow(window.Width, window.Height);
 
+            Glfw.WindowHint(Hint.Decorated, false);
+            // Disable vsync
+            Glfw.SwapInterval(0);
+
             window.OnViewportSizeChanged += (win, w, h) =>
             {
                 _dearImGuiWindow.OnResize(w, h);
@@ -93,7 +97,7 @@ namespace MinoTool
                     // this has to be before "NewFrame() call"
                     //_dearImGuiWindow.UpdateImGuiInput();
 
-                    IMGUI.NewFrame();
+                    ImGui.NewFrame();
 
                     ImGuiGLFW.ImGui_ImplGlfw_UpdateMousePosAndButtons();
                     ImGuiGLFW.ImGui_ImplGlfw_UpdateMouseCursor();
@@ -119,7 +123,7 @@ namespace MinoTool
                     _dearImGuiWindow.OnRenderFrame(_time);
                     //_uiSystem.Update(_time);
 
-                    IMGUI.Render();
+                    ImGui.Render();
 
                     Glfw.SwapBuffers(_appWindow.WindowInfo);
 
@@ -128,7 +132,7 @@ namespace MinoTool
 
                 _appSandbox.OnQuit();
 
-                IMGUI.DestroyContext();
+                ImGui.DestroyContext();
                 Glfw.Terminate();
             }
             else

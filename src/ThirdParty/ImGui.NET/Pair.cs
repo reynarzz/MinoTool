@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace MinoGUI
+namespace ImGuiNET
 {
     public struct ImGuiStoragePair
     {
         public uint Key;
-        public UnionValue Value;
+        public PairUnionValue Value;
     }
 
     public unsafe struct ImGuiStoragePairPtr
@@ -20,7 +20,7 @@ namespace MinoGUI
     }
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct UnionValue
+    public struct PairUnionValue
     {
         [FieldOffset(0)]
         public int ValueI32;

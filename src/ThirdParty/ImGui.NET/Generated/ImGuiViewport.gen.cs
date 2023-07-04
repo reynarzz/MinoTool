@@ -3,7 +3,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace MinoGUI
+namespace ImGuiNET
 {
     public unsafe partial struct ImGuiViewport
     {
