@@ -25,10 +25,10 @@ namespace MinoTool
         /// <param name="scrWidth"></param>
         /// <param name="scrHeight"></param>
         /// <param name="backend">Only OpenGL is available at this point.</param>
-        public static void Run<T>(string windowName = _defWTitle, int scrWidth = _defScrWidth, 
+        public static void Run<T>(string windowName = _defWTitle, string iconPath = null, int scrWidth = _defScrWidth, 
                                   int scrHeight = _defScrHigth, GraphicsBackend backend = GraphicsBackend.OpenGL) where T : MinoApp, new()
         {
-            _engine.Run<T>(windowName, scrWidth, scrHeight, backend);
+            _engine.Run<T>(windowName, iconPath, scrWidth, scrHeight, backend);
         }
 
         public static void Close()

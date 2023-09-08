@@ -1,6 +1,7 @@
 ﻿using GlmNet;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using StbSharp;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -166,6 +167,39 @@ namespace MinoTool
             LOG.Log(value);
 
             return value;
+        }
+
+        public static Image LoadImage(string path)
+        {
+            Image image = default;
+
+            if (File.Exists(path))
+            {
+                ImageReader loader = new ImageReader();
+                using (Stream stream = File.Open(path, FileMode.Open))
+                {
+                    image = loader.Read(stream, StbImage.STBI_rgb_alpha);
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Icon at path {path}, doesn't exist!");
+            }
+
+            return image;
+        }
+
+        public unsafe static IntPtr GetBytePtr(byte[] data)
+        {
+            if (data != null)
+            {
+                fixed (byte* ptr = data)
+                {
+                    return (IntPtr)ptr;
+                }
+            }
+
+            return default;
         }
     }
 }

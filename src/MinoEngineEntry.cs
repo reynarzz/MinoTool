@@ -37,7 +37,7 @@ namespace MinoTool
             Screen.Width = width;
             Screen.Heigh = height;
 
-           
+
 
             var window = new AppWindow();
 
@@ -70,9 +70,8 @@ namespace MinoTool
 
             _dearImGuiWindow = new DearImGuiWindow(window.Width, window.Height);
 
-            Glfw.WindowHint(Hint.Decorated, false);
             // Disable vsync
-            Glfw.SwapInterval(0);
+            //Glfw.SwapInterval(0);
 
             window.OnViewportSizeChanged += (win, w, h) =>
             {
@@ -80,7 +79,7 @@ namespace MinoTool
             };
         }
 
-        public void Run<T>(string appName, int srcWidth, int scrHeight, GraphicsBackend backend) where T : MinoApp, new()
+        public void Run<T>(string appName, string iconPath, int srcWidth, int scrHeight, GraphicsBackend backend) where T : MinoApp, new()
         {
             if (!_isRunning)
             {
@@ -88,6 +87,19 @@ namespace MinoTool
                 Initialize<T>(appName, srcWidth, scrHeight);
 
                 ImGuiGLFW.ImGui_ImplGlfw_Init(_appWindow.WindowInfo);
+
+                // Set icon
+                if (!string.IsNullOrEmpty(iconPath))
+                {
+                    var iconImage = Utils.LoadImage(iconPath);
+
+                    if (iconImage != null)
+                    {
+                        var images = new Image[] { new Image(iconImage.Width, iconImage.Height, Utils.GetBytePtr(iconImage.Data)) };
+
+                        Glfw.SetWindowIcon(_appWindow.WindowInfo, 1, images);
+                    }
+                }
 
                 while (!Glfw.WindowShouldClose(_appWindow.WindowInfo) && _isRunning)
                 {
